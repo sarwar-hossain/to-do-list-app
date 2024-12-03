@@ -1,21 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 
 function App() {
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState(() => {
+    // Retrieve tasks from localStorage on initial render
+    const savedTasks = localStorage.getItem("tasks");
+    return savedTasks ? JSON.parse(savedTasks) : [];
+  });
+
   const [task, setTask] = useState("");
 
-  //add a new task to the tasks state.
+  // Save tasks to localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
+
+  // Add a new task to the tasks state
   const addTask = () => {
-    if (task.trim()) {   //Checks if the input is not empty after removing whitespace.
-      setTasks([...tasks, task]);    //Creates a new array with all existing tasks (...tasks) and the new task (input).
-      setTask("");      //Clears the input field after adding a task.
-    }
-    else{
-      alert('Please enter input');
+    if (task.trim()) {
+      setTasks([...tasks, task]); // Add new task to tasks array
+      setTask(""); // Clear input field
+    } else {
+      alert("Please enter input");
     }
   };
 
+  // Remove a task by its index
   const removeTask = (index) => {
     const newTasks = tasks.filter((_, i) => i !== index);
     setTasks(newTasks);
@@ -46,10 +56,3 @@ function App() {
 }
 
 export default App;
-
-
-
-
-
-
-
