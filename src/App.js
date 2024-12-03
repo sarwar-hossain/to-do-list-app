@@ -21,7 +21,7 @@ function App() {
       setTasks([...tasks, task]); // Add new task to tasks array
       setTask(""); // Clear input field
     } else {
-      alert("Please enter input");
+      alert("Please enter input"); //Alert when input filed is empty
     }
   };
 
