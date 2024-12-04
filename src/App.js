@@ -1,58 +1,84 @@
-import React, { useState, useEffect } from "react";
-import "./App.css";
+import React, { useEffect, useState } from 'react';
+import './App.css';
+
 
 function App() {
-  const [tasks, setTasks] = useState(() => {
-    // Retrieve tasks from localStorage on initial render
-    const savedTasks = localStorage.getItem("tasks");
-    return savedTasks ? JSON.parse(savedTasks) : [];
+  const [input, setInput] = useState("");
+
+  //Collect prevuese data form localstorage
+  const [output, setOutput] = useState(()=>{
+    const saveoutput=localStorage.getItem("output");
+    return saveoutput ? JSON.parse(saveoutput):[];
   });
 
-  const [task, setTask] = useState("");
 
-  // Save tasks to localStorage whenever they change
-  useEffect(() => {
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-  }, [tasks]);
+  //Add all data in output data
+  const addData = () => {
+    if(input.trim()){
+      setOutput([...output, input]);
+    setInput("");
+    }
+    else{
+      alert("Enter text");
+    }
+  }
 
-  // Add a new task to the tasks state
-  const addTask = () => {
-    if (task.trim()) {
-      setTasks([...tasks, task]); // Add new task to tasks array
-      setTask(""); // Clear input field
-    } else {
-      alert("Please enter input"); //Alert when input filed is empty
+  // To store data in localstoreage
+   useEffect(()=>{
+    localStorage.setItem("output", JSON.stringify(output))
+   }, [output])
+
+   //deleter single data
+  const dfun = (index) => {
+    if(window.confirm("Are you sure you want to delete this item?")) {
+      const newOutput = output.filter((_, i) => i !== index);
+      setOutput(newOutput);
     }
   };
 
-  // Remove a task by its index
-  const removeTask = (index) => {
-    const newTasks = tasks.filter((_, i) => i !== index);
-    setTasks(newTasks);
-  };
+  //Clear all data
+  const clearAll =()=>{
+      if(window.confirm("Are you sure you want to delete all items?")){
+        setOutput([]);
+      }
+  }
+   
 
   return (
-    <div className="app">
-      <h1>To-Do List</h1>
-      <div className="input-container">
+    <>
+
+      <div className='header'>
+
+        <h1>To  Do List App</h1>
+
         <input
-          type="text"
-          placeholder="Enter a task"
-          value={task}
-          onChange={(e) => setTask(e.target.value)}
+          type='text'
+          placeholder='Enter text'
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          required
         />
-        <button onClick={addTask}>Add</button>
+
+        <button onClick={addData} className='submit'>Submit</button>
+
+        <button onClick={clearAll} className='clear-btn'>Clear All</button>
+
       </div>
-      <ul className="task-list">
-        {tasks.map((t, index) => (
-          <li key={index} className="task-item">
-            <span>{t}</span>
-            <button onClick={() => removeTask(index)}>Remove</button>
-          </li>
+      
+      <br/><br/><br/><br/><br/><br/><br/>
+
+      <div className='output'>
+        {output.map((text, index) => (
+          <p key={index}>{text}
+          <button onClick={()=>dfun(index)} className='delete-btn'>Delete</button>
+          </p>
         ))}
-      </ul>
-    </div>
-  );
+
+      </div>
+
+    </>
+  )
 }
 
-export default App;
+
+export default App
