@@ -1,60 +1,89 @@
-.app {
-  text-align: center;
-  margin: 40px;
-  font-family: Arial, sans-serif;
-}
+body {
+  background-color: rgb(163, 238, 167);
 
-.input-container {
-  margin: 20px;
+}
+.header  {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: aqua;
+  padding: 10px;
+  justify-items: center;
 }
 
 input {
-  padding: 10px;
-  width: 300px;
-  margin-right: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  padding: 15px;
+  width: 400px;
+  border-radius: 10px;
+  background-color: rgb(224, 102, 218);
+  font-size: 20px;
 }
 
-button {
-  padding: 10px 15px;
-  background-color: #007bff;
-  color: white;
-  border: none;
+input:hover {
+  background-color: rgb(43, 150, 212);
+}
+
+.submit{
+  padding: 13px;
+  background-color: green;
+  margin-left: 30px;
   border-radius: 5px;
+  font-size: 18px;
+  width: 130px;
+  color: white;
   cursor: pointer;
 }
 
-button:hover {
-  background-color: #0056b3;
+.submit:hover {
+  background-color: rgb(101, 211, 101);
 }
 
-.task-list {
-  list-style: none;
-  padding: 0;
+
+.output {
+  justify-items: center;
+ 
 }
 
-.task-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 10px auto;
-  width: 400px;
-  padding: 10px;
-  background-color: #f9f9f9;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.task-item span {
-  font-size: 18px;
-}
-
-.task-item button {
-  background-color: #dc3545;
+p {
+  padding: 15px;
+  background-color: blue;
+  border-radius: 10px;
+  width: 30%;
+  font-size: 30px;
   color: white;
 }
 
-.task-item button:hover {
-  background-color: #b02a37;
+p:hover {
+  background-color: rgb(48, 48, 206);
+}
+
+.delete-btn {
+  padding: 10px;
+  background-color: rgb(216, 21, 14);
+  border-radius: 5px;
+  font-size: 15px;
+  width: 100px;
+  color: white;
+  float: right;
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  background-color: brown;
+}
+
+
+.clear-btn{
+  padding: 13px;
+  background-color: rgb(247, 8, 8);
+  margin-left: 30px;
+  border-radius: 5px;
+  font-size: 18px;
+  width: 130px;
+  color: white;
+  cursor: pointer;
+}
+
+.clear-btn:hover {
+  background-color: rgb(241, 13, 165);
 }
