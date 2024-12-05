@@ -41,7 +41,7 @@ input:hover {
 
 .output {
   justify-items: center;
- 
+  margin-top: 200px;
 }
 
 p {
@@ -86,4 +86,17 @@ p:hover {
 
 .clear-btn:hover {
   background-color: rgb(241, 13, 165);
+}
+
+/* Position the success message at the top-right corner */
+.success-message {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #49c44d;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 16px;
+ 
 }
